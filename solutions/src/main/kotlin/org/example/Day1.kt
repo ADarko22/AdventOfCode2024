@@ -10,7 +10,7 @@ fun main() {
 
 class Day1 : Day {
 
-    val input = "/day1".readResourceLines()
+    private val input = "/day1".readResourceLines()
 
     override fun part1() {
         val lists = extractListsFromInput()

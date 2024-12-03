@@ -1,8 +1,6 @@
 plugins {
     kotlin("jvm")
     java
-    // Apply the wrapper plugin
-    id("org.gradle.wrapper")
 }
 
 group = "org.example"
@@ -12,10 +10,14 @@ repositories {
     mavenCentral()
 }
 
+tasks.register<Wrapper>("wrapper") {
+
+}
 
 tasks.test {
     useJUnitPlatform()
 }
+
 kotlin {
     jvmToolchain(21)
 }

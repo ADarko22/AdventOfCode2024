@@ -21,5 +21,5 @@ dependencies {
 // Usage: ./gradlew PrepareWorkTask -Pday="day14" -Ppkg="org.example"
 tasks.register<PrepareWorkTask>("PrepareWorkTask") {
     day = project.findProperty("day") as String? ?: ""
-    pkg = project.findProperty("pkg") as String
+    pkg = project.findProperty("pkg") as String? ?: "org.example"
 }
