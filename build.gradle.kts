@@ -12,10 +12,7 @@ repositories {
     gradlePluginPortal()
 }
 
-dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.10")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.10")
-}
+
 
 // creates the stub class for the specified day
 // Usage: ./gradlew PrepareWorkTask -Pday="day14" -Ppkg="org.example"
