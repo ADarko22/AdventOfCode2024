@@ -1,5 +1,7 @@
 package org.example
 
+import java.util.concurrent.TimeUnit
+
 fun main() {
     Day15().part1()
     Day15().part2()
@@ -85,6 +87,7 @@ class Day15 : Day {
     }
 
     private enum class Movement(val value: Char, val row: Int, val col: Int) {
+        NONE('.', 0, 0),
         NORTH('^', -1, 0),
         SOUTH('v', 1, 0),
         EAST('>', 0, 1),
@@ -178,8 +181,8 @@ class Day15 : Day {
 
         // boxInitialPosition is the left side of the box
         private fun tryMoveBoxesVertically(boxInitialPosition: Position, movement: Movement): Boolean {
-            val boxesToMovePerRow = mutableMapOf<Int, List<Position>>()
-            boxesToMovePerRow[boxInitialPosition.row] = mutableListOf(boxInitialPosition)
+            val boxesToMovePerRow = mutableMapOf<Int, Set<Position>>()
+            boxesToMovePerRow[boxInitialPosition.row] = mutableSetOf(boxInitialPosition)
 
             var currentRow = boxInitialPosition.row
             var nextRow = currentRow + movement.row
@@ -190,7 +193,8 @@ class Day15 : Day {
                     return true
                 }
 
-                val nextRowBoxes = boxesToMovePerRow[currentRow]!!.map { it.col }.flatMap { boxesToMove(nextRow, it) }
+                val nextRowBoxes = boxesToMovePerRow[currentRow]!!
+                    .map { it.col }.flatMap { boxesToMove(nextRow, it) }.toSet()
                 boxesToMovePerRow[nextRow] = nextRowBoxes
                 currentRow = nextRow
                 nextRow = currentRow + movement.row
@@ -211,7 +215,7 @@ class Day15 : Day {
             movement: Movement,
             startRow: Int,
             finalRow: Int,
-            boxesToMovePerRow: MutableMap<Int, List<Position>>
+            boxesToMovePerRow: MutableMap<Int, Set<Position>>
         ) {
             if (movement == Movement.SOUTH) {
                 for (row in finalRow downTo startRow + 1) {
@@ -234,10 +238,10 @@ class Day15 : Day {
             }
         }
 
-        private fun isBlockedByWallRowForBoxes(row: Int, boxLeftSidePositions: List<Position>) =
+        private fun isBlockedByWallRowForBoxes(row: Int, boxLeftSidePositions: Set<Position>) =
             boxLeftSidePositions.any { grid[row][it.col] == '#' || grid[row][it.col + 1] == '#' }
 
-        private fun isFreeRowForBoxes(row: Int, boxLeftSidePositions: List<Position>) =
+        private fun isFreeRowForBoxes(row: Int, boxLeftSidePositions: Set<Position>) =
             boxLeftSidePositions.all { grid[row][it.col] == '.' && grid[row][it.col + 1] == '.' }
 
         private fun isFreeSpace(position: Position) = grid[position.row][position.col] == '.'
@@ -254,6 +258,46 @@ class Day15 : Day {
                         boxPositions.add(Position(row, col))
             return boxPositions
         }
+
+        // INTERACTIVE VERSION
+        fun moveRobotInVisualMode(movements: List<Movement>) {
+            printWarehouse(Movement.NONE, 0.0, clearScreen = false)
+            movements.forEachIndexed { index, movement ->
+                moveRobot(movement)
+                if (!movement.isHorizontal()) {
+                    val progress = ((index + 1) * 100.0) / movements.size
+                    printWarehouse(movement, progress)
+                }
+            }
+        }
+
+        fun printWarehouse(movement: Movement, progress: Double, clearScreen: Boolean = true) {
+            val reset = "\u001B[0m"
+            val red = "\u001B[31m"
+            val green = "\u001B[32m"
+            val blue = "\u001B[34m"
+
+            val formattedProgress = "%.2f".format(progress)
+            val progressAsString = "${red}Movement: ${movement.value}, $formattedProgress%${reset}"
+
+            val gridString = grid.joinToString("\n") { row ->
+                row.map { cell ->
+                    when (cell) {
+                        '@' -> "${red}${cell}${reset}"
+                        '.' -> "${green}${cell}${reset}"
+                        '[' -> "${blue}${cell}${reset}"
+                        ']' -> "${blue}${cell}${reset}"
+                        else -> cell
+                    }
+                }.joinToString("") // Use space to separate the elements in a row
+            }
+
+            // Move cursor up to the top of the grid (rows + 2 to include the progress line)
+            val cursorUp = if (clearScreen) "\u001B[${rows + 1}A" else ""
+            print("\r$cursorUp$progressAsString\n$gridString\n")
+            TimeUnit.MILLISECONDS.sleep(1000)
+        }
+
     }
 
     private fun parseInput2(): Pair<BigWarehouse, List<Movement>> {
