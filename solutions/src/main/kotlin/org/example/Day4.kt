@@ -10,7 +10,7 @@ fun main() {
 class Day4 : Day {
 
     private val XMAS = "XMAS"
-    private val input = "/day4".readResourceLines().map { it.toCharArray().toTypedArray() }.toTypedArray()
+    private val input = "day4".readResourceLines().map { it.toCharArray().toTypedArray() }.toTypedArray()
 
     override fun part1() {
         val solution = searchXMASOccurrences()

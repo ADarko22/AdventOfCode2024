@@ -8,7 +8,7 @@ fun main() {
 class Day14 : Day {
     private val regex = "p=(?<posX>\\d+),(?<posY>\\d+)\\sv=(?<velX>-?\\d+),(?<velY>-?\\d+)".toRegex()
 
-    private val input = "/day14".readResourceLines()
+    private val input = "day14".readResourceLines()
         .map { regex.matchEntire(it)!!.destructured }
         .map { (posX, posY, velX, velY) ->
             Robot(

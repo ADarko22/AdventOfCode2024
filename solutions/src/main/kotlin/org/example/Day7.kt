@@ -20,7 +20,7 @@ class Day7 : Day {
             { a, b -> "$a$b".toLong() }
         )
 
-    private val input = "/day7".readResourceLines()
+    private val input = "day7".readResourceLines()
         .map { it.split(":") }
         .map { parts -> parts[0].toLong() to parts[1].split(" ").filter { it.isNotEmpty() }.map { it.toLong() } }
 

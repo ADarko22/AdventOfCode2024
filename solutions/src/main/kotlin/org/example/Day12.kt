@@ -2,20 +2,6 @@ package org.example
 
 import kotlin.math.abs
 
-/**
- * X....X
- * XX..XX
- * XXXXXX
- * X.....
- * X.X.X.
- * XXXXXX
- *
- * X = 22 * 24
- * . = 6 * 8
- * . = 8 * 12
- */
-
-
 fun main() {
     Day12().part1()
     Day12().part2()
@@ -23,7 +9,7 @@ fun main() {
 
 class Day12 : Day {
 
-    private val input = "/day12".readResourceLines().map { it.toCharArray().toTypedArray() }.toTypedArray()
+    private val input = "day12".readResourceLines().map { it.toCharArray().toTypedArray() }.toTypedArray()
 
     override fun part1() {
         val solution = findAllPlantRegions().sumOf { it.area() * it.perimeter(input) }
@@ -105,9 +91,9 @@ class Day12 : Day {
         }
 
         private fun plantsByFacingEdgeDirection(gardenCoordinates: Set<GardenCoordinate>): Map<Direction, List<GardenCoordinate>> {
-            val gardenCoordinatesByFacingDirection : MutableMap<Direction, List<GardenCoordinate>> = mutableMapOf()
+            val gardenCoordinatesByFacingDirection: MutableMap<Direction, List<GardenCoordinate>> = mutableMapOf()
 
-            for(direction in Direction.entries) {
+            for (direction in Direction.entries) {
                 val coordinates = gardenCoordinates.filter {
                     val neighbor = GardenCoordinate(it.row + direction.row, it.col + direction.col)
                     !gardenCoordinates.contains(neighbor)

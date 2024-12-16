@@ -7,7 +7,7 @@ fun main() {
 
 class Day9 : Day {
 
-    private val input = "/day9".readResourceLines()[0]
+    private val input = "day9".readResourceLines()[0]
 
     override fun part1() {
         val solution = computeFileSystemChecksum(deFragmentBySplittingFiles())

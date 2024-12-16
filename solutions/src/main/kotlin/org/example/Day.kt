@@ -6,6 +6,5 @@ interface Day {
     fun part1()
     fun part2()
     fun String.readResourceLines() =
-        File(object {}.javaClass.getResource(this)?.toURI()!!.path!!)
-            .readLines()
+        Thread.currentThread().contextClassLoader.getResource(this)?.readText()!!.split("\n")
 }

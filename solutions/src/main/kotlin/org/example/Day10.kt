@@ -9,7 +9,7 @@ class Day10 : Day {
 
     private val directions = arrayOf(Pair(1, 0), Pair(0, 1), Pair(-1, 0), Pair(0, -1))
 
-    private val input = "/day10".readResourceLines()
+    private val input = "day10".readResourceLines()
         .map { line -> line.toCharArray().map { it.digitToInt() }.toTypedArray() }
         .toTypedArray()
 

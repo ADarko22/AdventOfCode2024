@@ -9,7 +9,7 @@ fun main() {
 
 class Day13 : Day {
 
-    private val input = "/day13".readResourceLines()
+    private val input = "day13".readResourceLines()
 
     override fun part1() {
         val clawMachines = ClawMachine.fromInput(input)

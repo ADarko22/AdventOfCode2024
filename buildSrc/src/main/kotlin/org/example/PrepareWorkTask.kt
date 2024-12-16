@@ -67,7 +67,7 @@ abstract class PrepareWorkTask @Inject constructor() : DefaultTask() {
     
                 class $dayClassName: Day {
                 
-                    private val input = "/$dayInputFile".readResourceLines()
+                    private val input = "$dayInputFile".readResourceLines()
                 
                     override fun part1() {
                         val solution = "todo"

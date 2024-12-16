@@ -10,7 +10,7 @@ fun main() {
 
 class Day8 : Day {
 
-    private val input = "/day8".readResourceLines()
+    private val input = "day8".readResourceLines()
 
     override fun part1() {
         val solution = findAntiNodes().size

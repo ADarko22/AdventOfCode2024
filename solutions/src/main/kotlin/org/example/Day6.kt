@@ -7,7 +7,7 @@ fun main() {
 
 class Day6 : Day {
 
-    private val input = "/day6".readResourceLines().map { it.toCharArray().toTypedArray() }.toTypedArray()
+    private val input = "day6".readResourceLines().map { it.toCharArray().toTypedArray() }.toTypedArray()
 
     override fun part1() {
         val laboratoryGrid = getLaboratoryGrid()

@@ -7,7 +7,7 @@ fun main() {
 
 class Day2 : Day {
 
-    private val input = "/day2".readResourceLines()
+    private val input = "day2".readResourceLines()
 
     override fun part1() {
         val solution = input.stream()

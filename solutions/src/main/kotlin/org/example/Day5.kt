@@ -9,7 +9,7 @@ fun main() {
 
 class Day5 : Day {
 
-    private val input = "/day5".readResourceLines()
+    private val input = "day5".readResourceLines()
 
     override fun part1() {
         val (orderingRules, updatePages) = splitInput()

@@ -7,7 +7,7 @@ fun main() {
 
 class Day11 : Day {
 
-    private val input = "/day11".readResourceLines()[0]
+    private val input = "day11".readResourceLines()[0]
         .split(Regex("\\s"))
         .map { Stone(it.toLong(), 1L) }
         .toList()

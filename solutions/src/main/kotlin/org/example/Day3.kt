@@ -8,7 +8,7 @@ fun main() {
 class Day3 : Day {
 
     private val mulRegex = Regex("mul\\((\\d+),(\\d+)\\)")
-    private val input = "/day3".readResourceLines().joinToString { it }
+    private val input = "day3".readResourceLines().joinToString { it }
 
     override fun part1() {
         val solution = input.sumOfMultiplications()
