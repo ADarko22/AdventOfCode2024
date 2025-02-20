@@ -85,13 +85,13 @@ class Day21 : Day {
                 val toVisitNext = mutableListOf<Char>()
                 distance++
                 toVisit.forEach { key ->
-                    keypadGraph[key]!!.keys.forEach { adjacentKey ->
-                        if (visited.contains(adjacentKey)) return@forEach
-
-                        distances[distance] = distances.getOrDefault(distance, mutableListOf())
-                        distances[distance]!!.add(adjacentKey)
-                        toVisitNext.add(adjacentKey)
-                    }
+                    keypadGraph[key]!!.keys
+                        .filter { visited.contains(it).not() }
+                        .forEach { adjacentKey ->
+                            distances[distance] = distances.getOrDefault(distance, mutableListOf())
+                            distances[distance]!!.add(adjacentKey)
+                            toVisitNext.add(adjacentKey)
+                        }
                     visited.add(key)
                 }
                 toVisit = toVisitNext

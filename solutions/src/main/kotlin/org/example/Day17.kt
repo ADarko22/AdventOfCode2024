@@ -45,7 +45,7 @@ class Day17 : Day {
             }
         }
 
-        private fun runOp(opCode: OpCode, operand: Int) =
+        private fun runOp(opCode: OpCode, operand: Int) {
             // Assuming that the shift operations are done with operands that are integers
             when (opCode) {
                 OpCode.ADV -> A = A shr toComboOperand(operand).toInt()
@@ -53,10 +53,14 @@ class Day17 : Day {
                 OpCode.BST -> B = toComboOperand(operand) % 8
                 OpCode.JNZ -> ic = if (A == 0L) ic + 2 else operand
                 OpCode.BXC -> B = B xor C
-                OpCode.OUT -> outputs.add((toComboOperand(operand) % 8).toInt())
                 OpCode.BDV -> B = A shr toComboOperand(operand).toInt()
                 OpCode.CDV -> C = A shr toComboOperand(operand).toInt()
+                OpCode.OUT -> {
+                    outputs.add((toComboOperand(operand) % 8).toInt())
+                    return
+                }
             }
+        }
 
         fun toComboOperand(operand: Int) =
             when (operand) {

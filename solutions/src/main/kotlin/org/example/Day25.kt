@@ -15,7 +15,7 @@ class Day25 : Day {
     }
 
     override fun part2() {
-        val (locks, keys) = parseInput()
+        val (_, _) = parseInput()
         val solution = "todo"
         println("Day 25 part 2: $solution")
     }
