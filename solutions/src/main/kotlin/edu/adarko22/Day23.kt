@@ -1,6 +1,4 @@
-package org.example
-
-import java.time.Instant
+package edu.adarko22
 
 fun main() {
     Day23().part1()

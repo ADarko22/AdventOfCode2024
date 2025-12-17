@@ -1,4 +1,4 @@
-package org.example
+package edu.adarko22
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
@@ -11,8 +11,8 @@ import kotlin.io.path.notExists
 import kotlin.io.path.writeText
 import kotlin.system.exitProcess
 
-val dayClassDir = Path.of("solutions", "src", "main", "kotlin", "org", "example")
-val dayInputFileDir = Path.of("solutions", "src", "main", "resources")
+val dayClassDir: Path = Path.of("solutions", "src", "main", "kotlin", "edu", "adarko22")
+val dayInputFileDir: Path = Path.of("solutions", "src", "main", "resources")
 
 abstract class PrepareWorkTask @Inject constructor() : DefaultTask() {
 
@@ -21,7 +21,7 @@ abstract class PrepareWorkTask @Inject constructor() : DefaultTask() {
 
     @Input
     @Optional
-    var pkg: String = "org.example"
+    var pkg: String = "edu.adarko22"
 
     @TaskAction
     fun execute() {
@@ -31,7 +31,7 @@ abstract class PrepareWorkTask @Inject constructor() : DefaultTask() {
         }
 
         val dayClassName = day.replaceFirstChar { it.uppercase() }
-        val dayNumber = "([0-9]{1,2})".toRegex().find(day)!!.value!!.toInt()
+        val dayNumber = "([0-9]{1,2})".toRegex().find(day)!!.value.toInt()
 
         logger.info("Using properties: ")
         logger.info("  day: $day")

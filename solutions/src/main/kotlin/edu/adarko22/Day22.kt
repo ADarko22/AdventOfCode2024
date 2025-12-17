@@ -1,4 +1,4 @@
-package org.example
+package edu.adarko22
 
 import kotlin.math.max
 

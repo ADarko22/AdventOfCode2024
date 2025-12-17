@@ -4,9 +4,8 @@ pluginManagement {
         gradlePluginPortal()
     }
 
-    val kotlinVersion: String by settings
     plugins {
-        id("org.jetbrains.kotlin.jvm") version kotlinVersion
+        kotlin("jvm") version "2.2.0"
     }
 }
 

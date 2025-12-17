@@ -1,6 +1,4 @@
-package org.example
-
-import java.io.File
+package edu.adarko22
 
 interface Day {
     fun part1()

@@ -8,7 +8,6 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
     compileOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.21")
 }

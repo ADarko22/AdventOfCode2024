@@ -1,4 +1,4 @@
-package org.example
+package edu.adarko22
 
 import org.apache.commons.math3.fraction.Fraction
 import kotlin.math.abs

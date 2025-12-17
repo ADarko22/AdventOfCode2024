@@ -9,14 +9,14 @@ and organized by day with the respective inputs in the [resources folder](soluti
 
 The funniest day, for me, was Day 15!
 I had a lot of fun implementing
-a [visual mode simulation](https://github.com/ADarko22/AdventOfCode2024/blob/main/solutions/src/main/kotlin/org/example/Day15.kt#L192),
+a [visual mode simulation](https://github.com/ADarko22/AdventOfCode2024/blob/main/solutions/src/main/kotlin/edu/adarko22/Day15.kt#L192),
 have look at it:
 
 #### Compile the solution for Day 15 to a Jar
 
 ```bash
 ./gradlew clean build 
-./gradlew generateJarFor -PmainFile=Day15.kt
+./gradlew generateJar -PmainFile=Day15.kt
 ```
 
 #### Run it in the terminal
@@ -24,7 +24,7 @@ have look at it:
 Make sure to use Java SDK 21+ for running the Jar.
 
 ```bash
-java -jar build/libs/Day15.jar
+java -jar build/libs/days/Day15.jar
 ```
 
 To stop the simulation press `ctrl + C`.
@@ -41,18 +41,30 @@ I loved the surprise hidden in the output of the second part of Day 14! You Must
 
 ```bash
 ./gradlew clean build 
-./gradlew generateJarFor -PmainFile=Day14.kt
-java -jar build/libs/Day14.jar
+./gradlew generateJar -PmainFile=Day14.kt
+java -jar build/libs/days/Day14.jar
 ```
 
 ## Extra
 
-This project provides the script [PrepareWorkTask.kt](buildSrc/src/main/kotlin/org/example/PrepareWorkTask.kt)
+### Auto-generate DayX Class
+
+This project provides the script [PrepareWorkTask.kt](buildSrc/src/main/kotlin/edu/adarko22/PrepareWorkTask.kt)
 which is handy to get started with the implementation for the solution of a new Day. It can be used with the command:
 
 ```bash
-./gradlew PrepareWorkTask -Pday="day26" -Ppkg="org.example"
+./gradlew PrepareWorkTask -Pday="day26" -Ppkg="edu.adarko22"
 ```
 
 The script generates the `Day26.kt` file in the kotlin sources in the `solutions` module, with the predefined code
 structure.
+
+### Generate Runnable Jars
+
+This project provides also the script [GenerateJar.kt](buildSrc/src/main/kotlin/edu/adarko22/GenerateJar.kt) to generate
+a runnable Jar for all or a specific file:
+
+- `./gradlew generateJar -Pall=true`
+- `./gradlew generateJar -PmainFile=DayX.kt`
+
+The jar files will be available in the `build/libs/days/` folder.

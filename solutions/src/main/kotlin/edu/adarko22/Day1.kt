@@ -1,4 +1,4 @@
-package org.example
+package edu.adarko22
 
 import java.util.stream.Collectors
 import kotlin.math.abs
